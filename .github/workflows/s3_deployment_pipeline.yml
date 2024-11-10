@@ -13,11 +13,11 @@ jobs:
       id-token: write
       contents: read
     
+    env:
+      AWS_REGION: ${{secrets.AWS_REGION}}
+      AWS_OIDC_IAM_ROLE_ARN: ${{secrets.AWS_OIDC_IAM_ROLE_ARN}}
+    
     steps:
-      env:
-        AWS_REGION: ${{secrets.AWS_REGION}}
-        AWS_OIDC_IAM_ROLE_ARN: ${{secrets.AWS_OIDC_IAM_ROLE_ARN}}
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
