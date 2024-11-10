@@ -31,15 +31,18 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Checking Terraform configuration
-        runs: terraform init
+        run: terraform init
+        working-directory: iac
 
       - name: Validate Terraform syntax
-        runs: terraform validate
+        run: terraform validate
+        working-directory: iac
 
       - name: Execute Terraform
-        runs: terraform apply -auto-approve
+        run: terraform apply -auto-approve
+        working-directory: iac
       
-        
+          
     
 
 
