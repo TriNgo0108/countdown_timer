@@ -1,7 +1,7 @@
 variable "bucket_name" {
   description = "Name of the S3 bucket"
   type        = string
-  default = "countdown_timer"
+  default = "countdown-timer-core"
 }
 
 variable "aws_region" {
