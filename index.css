@@ -1,0 +1,51 @@
+/* style.css */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom right, #ffd1dc, #c8a2c8); /* Pastel pink to violet */
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+  
+  .countdown-container {
+    text-align: center;
+  }
+  
+  h1.heading {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    color: #6a1b9a; /* Deep violet to match pastel theme */
+  }
+  
+  #countdown {
+    display: flex;
+    gap: 20px;
+    font-size: 2em;
+  }
+  
+  .time-section {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px; /* Fixed width for uniform size */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .count-number {
+    font-size: 3em;
+    color: #5a3d5c;
+  }
+  
+  .time-section p {
+    margin: 0;
+    color: #5a3d5c;
+  }
+  
