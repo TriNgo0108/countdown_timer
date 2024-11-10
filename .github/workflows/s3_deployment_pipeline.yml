@@ -17,7 +17,7 @@ jobs:
       contents: read
     
     env:
-      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_REGION: 
       AWS_OIDC_IAM_ROLE_ARN: ${{ secrets.AWS_OIDC_IAM_ROLE_ARN }}
     
     steps:
@@ -28,8 +28,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with: 
-          aws-region: ap-southeast-1
-          role-to-assume: $AWS_OIDC_IAM_ROLE_ARN
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_OIDC_IAM_ROLE_ARN }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
