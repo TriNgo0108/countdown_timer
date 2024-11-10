@@ -14,10 +14,14 @@ jobs:
       contents: read
     
     env:
-      AWS_REGION: ${{secrets.AWS_REGION}}
-      AWS_OIDC_IAM_ROLE_ARN: ${{secrets.AWS_OIDC_IAM_ROLE_ARN}}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_OIDC_IAM_ROLE_ARN: ${{ secrets.AWS_OIDC_IAM_ROLE_ARN }}
     
     steps:
+
+      - name: Deploy to AWS region
+        run: echo "$AWS_REGION"
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
