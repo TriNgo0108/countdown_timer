@@ -22,3 +22,19 @@ variable "src_folder" {
   default = "../src"
 }
 
+variable "content_type_map" {
+  type = map(string)
+  default = {
+    ".html"  = "text/html"
+    ".css"   = "text/css"
+    ".js"    = "application/javascript"
+    ".json"  = "application/json"
+    ".png"   = "image/png"
+    ".jpeg"  = "image/jpeg"
+    ".jpg"   = "image/jpeg"
+    ".gif"   = "image/gif"
+    ".svg"   = "image/svg+xml"
+    ".woff2" = "application/font-woff2"
+  }
+}
+

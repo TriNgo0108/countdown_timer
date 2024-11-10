@@ -27,6 +27,7 @@ resource "aws_s3_object" "files" {
   key    = each.value
   source = "${var.src_folder}/${each.value}"
   etag   = filemd5("${var.src_folder}/${each.value}")
+  content_type = lookup(var.content_type_map, regex("\\.[^.]+$", each.value), "application/octet-stream")
 }
 
 
