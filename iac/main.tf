@@ -12,6 +12,14 @@ resource "aws_s3_bucket" "bootstrap" {
    
 }
 
+resource "aws_s3_bucket_public_access_block" "public_access" {
+  bucket                  = aws_s3_bucket.bootstrap.id
+  block_public_acls       = true
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
 
 resource "aws_s3_object" "files" {
   for_each = fileset(var.src_folder, "**")
@@ -20,6 +28,7 @@ resource "aws_s3_object" "files" {
   source = "${var.src_folder}/${each.value}"
   etag   = filemd5("${var.src_folder}/${each.value}")
 }
+
 
 
 

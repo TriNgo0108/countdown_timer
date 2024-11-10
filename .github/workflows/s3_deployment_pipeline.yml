@@ -15,11 +15,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-    
-    env:
-      AWS_REGION: 
-      AWS_OIDC_IAM_ROLE_ARN: ${{ secrets.AWS_OIDC_IAM_ROLE_ARN }}
-    
+      
     steps:
 
       - name: Checkout repository
