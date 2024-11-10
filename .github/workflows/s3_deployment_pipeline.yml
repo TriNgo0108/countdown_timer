@@ -43,7 +43,7 @@ jobs:
         working-directory: iac
 
       - name: Execute Terraform
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var-file="prod.tfvars"
         working-directory: iac
       
           
