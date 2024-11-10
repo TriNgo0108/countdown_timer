@@ -66,8 +66,8 @@ resource "aws_s3_bucket_policy" "static_website_policy" {
 
 terraform {
   backend "s3" {
-    bucket = aws_s3_bucket.terraform_state.id
+    bucket = "countdown_timer_terraform_state"
     key    = "terraform.tfstate"
-    region = var.aws_region
+    region = "ap-southeast-1"
   }
 }
