@@ -12,6 +12,14 @@ resource "aws_s3_bucket" "bootstrap" {
    
 }
 
+resource "aws_s3_bucket" "terraform_state" {
+  bucket = "${var.bucket_name}_terraform_state"
+   tags = {
+    Name        = "${var.bucket_name}_terraform_state"
+    Environment = "Production"
+  }
+}
+
 resource "aws_s3_object" "files" {
   for_each = fileset(var.src_folder, "**")
   bucket = aws_s3_bucket.bootstrap.id
@@ -54,4 +62,12 @@ resource "aws_s3_bucket_policy" "static_website_policy" {
       }
     ]
   })
+}
+
+terraform {
+  backend "s3" {
+    bucket = aws_s3_bucket.terraform_state.id
+    key    = "terraform.tfstate"
+    region = var.aws_region
+  }
 }
