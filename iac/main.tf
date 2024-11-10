@@ -12,13 +12,6 @@ resource "aws_s3_bucket" "bootstrap" {
    
 }
 
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "${var.bucket_name}-terraform-state"
-   tags = {
-    Name        = "${var.bucket_name}-terraform-state"
-    Environment = "Production"
-  }
-}
 
 resource "aws_s3_object" "files" {
   for_each = fileset(var.src_folder, "**")
@@ -26,15 +19,6 @@ resource "aws_s3_object" "files" {
   key    = each.value
   source = "${var.src_folder}/${each.value}"
   etag   = filemd5("${var.src_folder}/${each.value}")
-}
-
-
-resource "aws_s3_bucket_public_access_block" "public_access" {
-  bucket                  = aws_s3_bucket.bootstrap.id
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
-  restrict_public_buckets = false
 }
 
 
