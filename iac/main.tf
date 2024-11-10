@@ -13,9 +13,9 @@ resource "aws_s3_bucket" "bootstrap" {
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "${var.bucket_name}_terraform_state"
+  bucket = "${var.bucket_name}-terraform-state"
    tags = {
-    Name        = "${var.bucket_name}_terraform_state"
+    Name        = "${var.bucket_name}-terraform-state"
     Environment = "Production"
   }
 }
@@ -66,7 +66,7 @@ resource "aws_s3_bucket_policy" "static_website_policy" {
 
 terraform {
   backend "s3" {
-    bucket = "countdown_timer_terraform_state"
+    bucket = "countdown-timer-core-terraform-state"
     key    = "terraform.tfstate"
     region = "ap-southeast-1"
   }
