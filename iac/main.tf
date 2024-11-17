@@ -21,7 +21,6 @@ resource "aws_s3_bucket_public_access_block" "public_access" {
 }
 
 
-
 resource "aws_s3_bucket_website_configuration" "countdown_timer_website_configuration" {
   bucket = aws_s3_bucket.bootstrap.id
 
