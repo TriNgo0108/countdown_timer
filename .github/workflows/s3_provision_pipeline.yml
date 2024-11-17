@@ -1,4 +1,4 @@
-name: S3 Deployment pipeline
+name: S3 Provision pipeline
 run-name: ${{github.actor}} is provisioning a s3 bucket
 on: 
   workflow_dispatch:
