@@ -1,15 +1,15 @@
 name: S3 Deployment pipeline
 run-name: ${{github.actor}} is provisioning a s3 bucket
 on: 
-  push:
-    branches:
-      - main
-      - 'release/**'
-
   workflow_dispatch:
+    inputs:
+      start_workflow:
+        type: boolean
+        required: true
+      
 
 jobs:
-  deploy-to-s3:
+  provisioning-s3-bucket:
     runs-on: ubuntu-latest
 
     permissions:
