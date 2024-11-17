@@ -21,18 +21,6 @@ resource "aws_s3_bucket_public_access_block" "public_access" {
 }
 
 
-resource "aws_s3_object" "files" {
-  for_each = fileset(var.src_folder, "**")
-  bucket = aws_s3_bucket.bootstrap.id
-  key    = each.value
-  source = "${var.src_folder}/${each.value}"
-  etag   = filemd5("${var.src_folder}/${each.value}")
-  content_type = lookup(var.content_type_map, regex("\\.[^.]+$", each.value), "application/octet-stream")
-}
-
-
-
-
 resource "aws_s3_bucket_website_configuration" "countdown_timer_website_configuration" {
   bucket = aws_s3_bucket.bootstrap.id
 

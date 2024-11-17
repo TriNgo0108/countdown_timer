@@ -1,7 +1,7 @@
 name: S3 Deployment pipeline
-run-name: ${{github.actor}} is deploying new version to S3
+run-name: ${{github.actor}} is provisioning a s3 bucket
 on: 
-  pull_request:
+  push:
     branches:
       - main
       - 'release/**'
@@ -26,21 +26,8 @@ jobs:
         with: 
           aws-region: ${{ secrets.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_OIDC_IAM_ROLE_ARN }}
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-
-      - name: Checking Terraform configuration
-        run: terraform init
-        working-directory: iac
-
-      - name: Validate Terraform syntax
-        run: terraform validate
-        working-directory: iac
-
-      - name: Execute Terraform
-        run: terraform apply -auto-approve -var-file="prod.tfvars"
-        working-directory: iac
+      - name: Deploy to S3 bucket
+        run: aws s3 sync src ${{secrets.AWS_S3_BUCKET_URI}}
       
           
     
