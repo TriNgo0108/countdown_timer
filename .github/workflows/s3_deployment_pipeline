@@ -1,0 +1,35 @@
+name: S3 Deployment pipeline
+run-name: ${{github.actor}} is provisioning a s3 bucket
+on: 
+  push:
+    branches:
+      - main
+      - 'release/**'
+
+  workflow_dispatch:
+
+jobs:
+  deploy-to-s3:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+      
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with: 
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_OIDC_IAM_ROLE_ARN }}
+      - name: Deploy to S3 bucket
+        run: aws s3 sync src {{secrets.AWS_S3_BUCKET_URI}}
+      
+          
+    
+
+
