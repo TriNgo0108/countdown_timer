@@ -27,7 +27,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_OIDC_IAM_ROLE_ARN }}
       - name: Deploy to S3 bucket
-        run: aws s3 sync src {{secrets.AWS_S3_BUCKET_URI}}
+        run: aws s3 sync src ${{secrets.AWS_S3_BUCKET_URI}}
       
           
     
