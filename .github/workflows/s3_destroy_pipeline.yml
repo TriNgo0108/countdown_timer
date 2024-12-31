@@ -1,0 +1,48 @@
+name: S3 Destroy pipeline
+run-name: ${{github.actor}} is destroying a s3 bucket
+on: 
+  workflow_dispatch:
+    inputs:
+      start_workflow:
+        type: boolean
+        required: true
+      
+
+jobs:
+  provisioning-s3-bucket:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+      
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with: 
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_OIDC_IAM_ROLE_ARN }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Checking Terraform configuration
+        run: terraform init
+        working-directory: iac
+
+      - name: Validate Terraform syntax
+        run: terraform validate
+        working-directory: iac
+
+      - name: Execute Terraform
+        run: terraform destroy -auto-approve
+        working-directory: iac
+      
+          
+    
+
+

@@ -1,5 +1,5 @@
 name: S3 Deployment pipeline
-run-name: ${{github.actor}} is provisioning a s3 bucket
+run-name: ${{github.actor}} is deployment a s3 bucket
 on: 
   push:
     branches:
